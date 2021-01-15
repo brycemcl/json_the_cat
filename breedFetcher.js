@@ -13,15 +13,13 @@ const fetchBreedDescription = function(breedName, callback) {
       }
     )
     .then((body) => {
-      if (body === false) {
-        callback("Error: Breed Not found.", null);
-      } else {
+      if (body) {
         callback(null, body[0].description);
       }
     })
-    .catch(
-      () => { }
-    );
+    .catch(() => {
+      callback("Error: Breed Not found.", null);
+    });
 };
 
 module.exports = { fetchBreedDescription };
